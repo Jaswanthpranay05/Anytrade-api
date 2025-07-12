@@ -5,7 +5,7 @@ const admin = require('firebase-admin');
 const User = require('../models/User');
 
 router.post('/register', async (req, res) => {
-  const { uid, name, email, phone, domain } = req.body;
+  const { uid, name, email, phone, domain, password } = req.body;
 
   console.log("📥 Incoming register request body:", req.body);
 
@@ -32,7 +32,7 @@ router.post('/register', async (req, res) => {
     }
 
     console.log("💾 Saving new user to MongoDB...");
-    const newUser = new User({ uid, name, email, phone, domain });
+    const newUser = new User({ uid, name, email, phone, domain, password });
     await newUser.save();
 
     console.log("🎉 User registered successfully");
