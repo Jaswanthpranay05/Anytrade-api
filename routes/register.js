@@ -4,7 +4,7 @@ const router = express.Router();
 const admin = require('firebase-admin');
 const User = require('../models/User');
 
-router.post('/register', async (req, res) => {
+router.post('/api/register', async (req, res) => {
   const { uid, name, email, phone, domain } = req.body;
 
   console.log("📥 Incoming register request body:", req.body);
