@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
   uid: { type: String, required: true, unique: true },
@@ -24,21 +23,7 @@ const userSchema = new mongoose.Schema({
   domain: { type: String, required: true }
 });
 
-// Pre-save hook to hash password
-userSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) return next(); // only hash if password is new or modified
 
-  try {
-    const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt);
-    next();
-  } catch (err) {
-    next(err);
-  }
-});
-
-// Method to verify password
-userSchema.methods.comparePassword = async function (candidatePassword) {
   return await bcrypt.compare(candidatePassword, this.password);
 };
 
