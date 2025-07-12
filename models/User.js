@@ -22,9 +22,3 @@ const userSchema = new mongoose.Schema({
   },
   domain: { type: String, required: true }
 });
-
-
-  return await bcrypt.compare(candidatePassword, this.password);
-};
-
-module.exports = mongoose.model('User', userSchema);
