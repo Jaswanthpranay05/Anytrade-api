@@ -3,7 +3,10 @@ const express = require('express');
 const admin = require('firebase-admin');
 const mongoose = require('./config/db'); // Mongo connection
 const registerRoute = require('./routes/register');
-const serviceAccount = require('./firebase/serviceAccountKey.json');
+const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+});
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
