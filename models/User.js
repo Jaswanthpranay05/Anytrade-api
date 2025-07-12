@@ -22,3 +22,6 @@ const userSchema = new mongoose.Schema({
   },
   domain: { type: String, required: true }
 });
+
+// ✅ EXPORT the model correctly
+module.exports = mongoose.model('User', userSchema);
